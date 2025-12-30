@@ -12,10 +12,13 @@ Rails.application.routes.draw do
 
   root "products#index"
 
-  resources :products
+  resources :products do
+    resources :subscribers, only: [ :create ]
+  end
 
+  resource :unsubscribe, only: [ :show ]
   # get "/products", to: "products#index"
-  
+
   # get "/products/new", to: "products#new"
   # post "/products", to: "products#create"
 
@@ -26,5 +29,4 @@ Rails.application.routes.draw do
   # put "/products/:id", to: "products#update"
 
   # delete "/products/:id", to: "products#destroy"
-
 end
